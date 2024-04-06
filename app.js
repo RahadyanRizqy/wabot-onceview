@@ -69,16 +69,27 @@ client.on('message', async (message) => {
     try {
         if (message.hasMedia && message._data.isViewOnce) {
             const media = await message.downloadMedia();
-            await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
-                caption: `Once-view from +${message.from.replace('@c.us', '')}`
-                // sendMediaAsSticker: true,
-            });
+
+            if (message.from.includes('g.us')) {
+                await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
+                    caption: `Once-view from group by +${message.author.replace('@c.us', '')}`
+                });
+            }
+            else {
+                await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
+                    caption: `Once-view from +${message.from.replace('@c.us', '')}`
+                    // sendMediaAsSticker: true,
+                });
+            }
         }
     }
     catch (error) {
         logErrorToFile(error.toString(), config);
         console.error(error);
-    } 
+    }
+    // const gcName = await message.getChat();
+
+    // console.log(message); 
 });
 
 client.initialize();
