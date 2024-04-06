@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "date-and-time": "^3.1.1",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "ffmpeg": "^0.0.4",
+    "puppeteer": "^21.10.0",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.1-alpha.5"
+  }
+}
