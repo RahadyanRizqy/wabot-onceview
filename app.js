@@ -72,7 +72,7 @@ client.on('message', async (message) => {
 
             if (message.from.includes('g.us')) {
                 await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
-                    caption: `Once-view from group by +${message.author.replace('@c.us', '')}`
+                    caption: `Once-view from group of ${((await message.getChat()).name)}\nby +${message.author.replace('@c.us', '')}`
                 });
             }
             else {
