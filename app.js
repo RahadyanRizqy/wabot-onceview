@@ -67,10 +67,10 @@ client.on('qr', qr => {
 client.on('message', async (message) => {
     // console.log(message);
     try {
-        if (message.hasMedia) {
+        if (message.hasMedia && message._data.isViewOnce) {
             const media = await message.downloadMedia();
             await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
-                caption: `Once-view from ${message.from}`
+                caption: `Once-view from +${message.from.replace('@c.us', '')}`
                 // sendMediaAsSticker: true,
             });
         }
