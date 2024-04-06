@@ -85,7 +85,7 @@ client.on('message', async (message) => {
     }
     catch (error) {
         logErrorToFile(error.toString(), config);
-        console.error(error);
+        // console.error(error);
     }
     // const gcName = await message.getChat();
 
