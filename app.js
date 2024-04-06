@@ -84,6 +84,9 @@ client.on('message', async (message) => {
         }
     }
     catch (error) {
+        if (config.consoleError) {
+            console.log(error);
+        }
         logErrorToFile(error.toString(), config);
         // console.error(error);
     }
