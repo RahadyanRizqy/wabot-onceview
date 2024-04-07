@@ -67,22 +67,22 @@ client.on('qr', qr => {
 client.on('message', async (message) => {
     // console.log(message);
     try {
-        // if (message.hasMedia && message._data.isViewOnce) {
-        //     const media = await message.downloadMedia();
+        if (message.hasMedia && message._data.isViewOnce) {
+            const media = await message.downloadMedia();
 
-        //     if (message.from.includes('g.us')) {
-        //         await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
-        //             caption: `Once-view from group of ${((await message.getChat()).name)}\nby +${message.author.replace('@c.us', '')}`
-        //         });
-        //     }
-        //     else {
-        //         await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
-        //             caption: `Once-view from +${message.from.replace('@c.us', '')}`
-        //             // sendMediaAsSticker: true,
-        //         });
-        //     }
-        // }
-        if (message.body === '!radencheck') {
+            if (message.from.includes('g.us')) {
+                await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
+                    caption: `Once-view from group of ${((await message.getChat()).name)}\nby +${message.author.replace('@c.us', '')}`
+                });
+            }
+            else {
+                await client.sendMessage(`${config.ownerPhone}@c.us`, media, {
+                    caption: `Once-view from +${message.from.replace('@c.us', '')}`
+                    // sendMediaAsSticker: true,
+                });
+            }
+        }
+        else if (message.body === '!radencheck') {
             await client.sendMessage(`${config.ownerPhone}@c.us`, 'Bot online!');
         }
     }
@@ -91,6 +91,12 @@ client.on('message', async (message) => {
             console.log(error);
         }
         logErrorToFile(error.toString(), config);
+        if (message.from.includes('g.us')) {
+            await client.sendMessage(`${config.ownerPhone}@c.us`, `Error from group of ${((await message.getChat()).name)}\nby +${message.author.replace('@c.us', '')}`);
+        }
+        else {
+            await client.sendMessage(`${config.ownerPhone}@c.us`, `Error from +${message.from.replace('@c.us', '')}`);
+        }
         // console.error(error);
     }
     // const gcName = await message.getChat();
