@@ -82,6 +82,9 @@ client.on('message', async (message) => {
                 });
             }
         }
+        if (message.body === '!radencheck') {
+            await client.sendMessage(`${config.ownerPhone}@c.us`, 'Bot online!');
+        }
     }
     catch (error) {
         if (config.consoleError) {
